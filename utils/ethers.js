@@ -5,8 +5,8 @@ import { ethers } from 'ethers'
 
 
 export let web3 = new ethers.providers.AlchemyProvider(
-  'maticmum',
-  'gWURfPr54ULR_Wbs_4GmH7p390OpBKNn'
+  process.env.NETWORK_NAME,
+  process.env.RPC_KEY
 )
 
 const MaxUint = ethers.constants.MaxUint256

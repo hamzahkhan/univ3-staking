@@ -183,8 +183,8 @@ export const findNFTByPool = async (address, program) => {
     // console.log("Staker nfts : ", stakerNfts);
 
     // Setup Multicall Provider
-    const ethcallProvider = new Provider(web3, 80001)
-
+    const ethcallProvider = new Provider(web3, process.env.chainId)
+    console.log("chain id check", process.env.chainId);
     console.log("Eth call provider");
     // Multicall hates the v3Positions's ABI???????
     const v3Manger = new Contract(v3Positions.address, [
