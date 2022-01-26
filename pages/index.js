@@ -47,15 +47,13 @@ import { comma } from '../utils/helpers'
 // ]
 
 const IncentiveKey =
-[
-  '0x0000000000000000000000000000000000001010', 
-  '0x41C528Df7E9b0Ee1938dA63eDAB1c3E21dFEcaA0',
-  '1642518000',
-  '1642604400',
-  '0x8AFEB0EFB6c3245D59d367a8595C23B4f068517a'
-]
-
-
+  [
+    '0x0000000000000000000000000000000000001010',
+    '0xc1FF5D622aEBABd51409e01dF4461936b0Eb4E43',
+    '1642518000',
+    '1642604400',
+    '0x8AFEB0EFB6c3245D59d367a8595C23B4f068517a'
+  ]
 
 
 const programEmissions = 10000000
@@ -106,18 +104,27 @@ export default function Home() {
   }
 
   useEffect(async () => {
-    if (account) {
-      const lpPositions = await findNFTByPool(account, IncentiveKey)
-      setPositions(lpPositions)
+    try {
+      if (account) {
+        const lpPositions = await findNFTByPool(account, IncentiveKey)
+        setPositions(lpPositions)
+      }
+    }
+    catch (error) {
+      console.log("Error in finding nft by pool", error);
     }
     /// Calculate APY
-    const data = await getPoolData(IncentiveKey[1], IncentiveKey[0])
-    const emissionsPerSecond =
-      programEmissions / (IncentiveKey[3] - IncentiveKey[2])
-    const apy =
-      ((emissionsPerSecond * data.token * secondsInAYear) / data.tvl) * 100
-    setPool({ ...data, apy })
+    try {
+      const data = await getPoolData(IncentiveKey[1], IncentiveKey[0])
+      const emissionsPerSecond = programEmissions / (IncentiveKey[3] - IncentiveKey[2])
+      const apy = ((emissionsPerSecond * data.token * secondsInAYear) / data.tvl) * 100
+      setPool({ ...data, apy })
+    }
+    catch (error) {
+      console.log("Error in getting pool data", error);
+    }
   }, [account, block])
+
 
   return (
     <Page title={pool.symbol ? pool.symbol + '/ETH' : false}>
@@ -153,10 +160,10 @@ export default function Home() {
               <StatNumber>
                 {positions[0]
                   ? `${commas(
-                      positions
-                        .map((i) => (i.reward ? i.reward / 1e18 : 0))
-                        .reduce((a, b) => a + b)
-                    )}`
+                    positions
+                      .map((i) => (i.reward ? i.reward / 1e18 : 0))
+                      .reduce((a, b) => a + b)
+                  )}`
                   : '0.0'}{' '}
                 {`${pool.symbol ? pool.symbol : ''}`}
               </StatNumber>
@@ -188,7 +195,7 @@ export default function Home() {
                 </Tr>
               </Thead>
 
-              {positions[0] ? (
+              {positions[0] && (
                 <Tbody>
                   {positions.map((position) => (
                     <Tr key={position.id}>
@@ -309,13 +316,13 @@ export default function Home() {
                     </Tr>
                   ))}
                 </Tbody>
-              ) : null}
+              )}
+
             </Table>
             {!positions[0] && (
               <Center flexDirection="column" p="6">
-                <Heading size="sm">{`No ${
-                  pool.symbol ? pool.symbol : '???'
-                } positions found!`}</Heading>
+                <Heading size="sm">{`No ${pool.symbol ? pool.symbol : '???'
+                  } positions found!`}</Heading>
                 <Text>
                   {`Deposit `}
                   <Link
