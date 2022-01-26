@@ -1,7 +1,6 @@
 import { Web3Provider } from '../contexts/useWeb3'
 import { useWallet, UseWalletProvider } from 'use-wallet'
 import { AlertProvider } from '../contexts/useAlerts'
-import { chainID } from '../utils/ethers'
 
 import { ChakraProvider, CSSReset, extendTheme } from '@chakra-ui/react'
 
@@ -27,7 +26,7 @@ export default function App({ Component, pageProps }) {
     <ChakraProvider theme={extendTheme({ theme })}>
       <CSSReset />
       <UseWalletProvider
-        chainId={chainID}
+        chainId={process.env.chainId}
         connectors={{
           walletconnect: { rpcUrl: 'https://mainnet.polygon.aragon.network/' },
           walletlink: { url: 'https://mainnet.polygon.aragon.network/' }
