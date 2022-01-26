@@ -3,15 +3,10 @@ import { ethers } from 'ethers'
 // let provider = new ethers.providers.JsonRpcProvider(atob(ETH_NODE))
 // export let web3 = new ethers.providers.getDefaultProvider()
 
-export const chainID = 137
-// process.env.CHAIN_ID ? process.env.CHAIN_ID : 1
-console.log('Chain ID: ', chainID)
 
-export let web3 = new ethers.providers.InfuraProvider(
-  137,
-  // chainID === 80001 ? 'homestead' : 'maticmum',
-  'd09b9ae3ea544d869c82adb8ee775c94'
-  // process.env.INFURA
+export let web3 = new ethers.providers.AlchemyProvider(
+  'maticmum',
+  'gWURfPr54ULR_Wbs_4GmH7p390OpBKNn'
 )
 
 const MaxUint = ethers.constants.MaxUint256
