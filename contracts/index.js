@@ -34,7 +34,7 @@ export const v3Pool = { abi: v3PoolABI }
 // mainnet 
 export const ETH_MATIC = {
   abi: v3PoolABI,
-  address: '0x167384319b41f7094e62f7506409eb38079abff8'
+  address: '0xc1FF5D622aEBABd51409e01dF4461936b0Eb4E43'
 }
 
 // mumbai version
