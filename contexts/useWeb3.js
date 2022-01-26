@@ -63,7 +63,7 @@ export const Web3Provider = (props) => {
   }
 
   const fetchENS = async (address) => {
-    setEns(await web3.lookupAddress(address))
+    // setEns(await web3.lookupAddress(address))
   }
 
   // Once we've connected a wallet, switch to wallet provider
