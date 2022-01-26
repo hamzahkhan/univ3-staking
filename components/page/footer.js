@@ -31,7 +31,7 @@ const Footer = () => {
             staker.projects.sh
           </Text>
           <Text fontSize="sm" color="gray.500">
-            A simple UI for Uniswap V3 staking programs
+            A simple UI for Polygon Uniswap V3 staking programs
           </Text>
         </Box>
         <Box>

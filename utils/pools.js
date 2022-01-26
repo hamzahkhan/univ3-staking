@@ -297,9 +297,13 @@ export const findNFTByPool = async (address, program) => {
 
 // Fetches TVL of a XXX/ETH pool and returns prices
 export const getPoolData = async (pool, token) => {
-  const weth = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
+  // const weth = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
+  
+  // mumbai deployment of weth
+  const weth = '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619'
 
   const wethPrice = await getWETHPrice()
+  console.log("this is the price of weth", wethPrice)
   const poolContract = new ethers.Contract(pool, v3Pool.abi, web3)
 
   const token0 = await poolContract.token0()
@@ -337,7 +341,11 @@ export const getPoolData = async (pool, token) => {
 }
 
 export const getWETHPrice = async () => {
-  const weth_usdc = '0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640'
+  // const weth_usdc = '0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640'
+  // 0x167384319b41f7094e62f7506409eb38079abff8
+
+  const weth_usdc = '0x167384319b41f7094e62f7506409eb38079abff8'
+
   const poolContract = new ethers.Contract(weth_usdc, v3Pool.abi, web3)
   const data = await poolContract.slot0()
   const ratio = univ3prices([6, 18], data.sqrtPriceX96).toAuto() // [] token decimals

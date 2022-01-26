@@ -29,8 +29,8 @@ export default function App({ Component, pageProps }) {
       <UseWalletProvider
         chainId={chainID}
         connectors={{
-          walletconnect: { rpcUrl: 'https://mainnet.eth.aragon.network/' },
-          walletlink: { url: 'https://mainnet.eth.aragon.network/' }
+          walletconnect: { rpcUrl: 'https://mainnet.polygon.aragon.network/' },
+          walletlink: { url: 'https://mainnet.polygon.aragon.network/' }
         }}
       >
         <AlertProvider>

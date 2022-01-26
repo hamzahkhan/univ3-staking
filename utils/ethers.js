@@ -3,12 +3,15 @@ import { ethers } from 'ethers'
 // let provider = new ethers.providers.JsonRpcProvider(atob(ETH_NODE))
 // export let web3 = new ethers.providers.getDefaultProvider()
 
-export const chainID = process.env.CHAIN_ID ? process.env.CHAIN_ID : 1
+export const chainID = 137
+// process.env.CHAIN_ID ? process.env.CHAIN_ID : 1
 console.log('Chain ID: ', chainID)
 
 export let web3 = new ethers.providers.InfuraProvider(
-  chainID === 1 ? 'homestead' : 'rinkeby',
-  process.env.INFURA
+  137,
+  // chainID === 80001 ? 'homestead' : 'maticmum',
+  'd09b9ae3ea544d869c82adb8ee775c94'
+  // process.env.INFURA
 )
 
 const MaxUint = ethers.constants.MaxUint256

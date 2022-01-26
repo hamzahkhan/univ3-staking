@@ -28,13 +28,13 @@ const Header = () => {
         maxW={{ base: '100%', md: 960 }}
       >
         <Flex width={['auto', 'auto']}>
-          <Ribbon w={64} h={64} />
+          {/* <Ribbon w={64} h={64} /> */}
           <Box ml="2">
             <Heading size="lg" mb={2}>
-              Ribbon LP Staking
+              Polygon Uniswap LP Staking
             </Heading>
             <Text fontSize="lg" color="gray.500">
-              Stake your RBN/ETH LP position
+              Stake your LP positions to earn MATIC rewards 
             </Text>
           </Box>
         </Flex>
